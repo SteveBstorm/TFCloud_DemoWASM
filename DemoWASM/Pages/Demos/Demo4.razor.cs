@@ -11,6 +11,7 @@ namespace DemoWASM.Pages.Demos
         public Demo4()
         {
             JeuForm = new Jeu();
+            JeuForm.Titre = "bidule";
             Genres = new List<string>();
             Genres.AddRange(new string[] {"RPG", "RTS", "FPS", "Hack'n slash", "Autre" });
         }
