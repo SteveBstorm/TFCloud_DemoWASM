@@ -1,5 +1,6 @@
 ﻿@page "/demo6"
 @using DemoWASM.Models
+@attribute [Authorize(Roles = "Admin")]
 <h3>Demo6</h3>
 
 <table class="table table-striped">

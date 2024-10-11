@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using System.Net.Http.Json;
 
@@ -13,6 +14,11 @@ namespace DemoWASM.Pages.Demos.Auth
 
         [Inject]
         public IJSRuntime JS { get; set; }
+        [Inject]
+        public AuthenticationStateProvider StateProvider { get; set; }
+        [Inject]
+        public NavigationManager Nav { get; set; }
+
 
         public async Task SubmitForm()
         {
@@ -26,7 +32,8 @@ namespace DemoWASM.Pages.Demos.Auth
 
             string token = await response.Content.ReadAsStringAsync();
             await JS.InvokeVoidAsync("localStorage.setItem", "token", token);
-
+            ((MyStateProvider)StateProvider).NotifyUserChanged();
+            Nav.NavigateTo("/");
         }
     }
 }
